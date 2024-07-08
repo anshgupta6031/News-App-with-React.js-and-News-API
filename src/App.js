@@ -6,14 +6,14 @@ import News from './components/News';
 
 
 export default class App extends Component {
-  render() {
-    return (
-      <div>
-        <Navbar />
+	render() {
+		return (
+			<div>
+				<Navbar />
 
-        <News />
-      </div>
-    )
-  }
+				<News />
+			</div>
+		)
+	}
 }
 
