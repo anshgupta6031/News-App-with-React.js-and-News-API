@@ -74,17 +74,17 @@ export default class News extends Component {
 
 					{(!this.state.loading) && this.state.articles.map((element) => {
 						return <div className="col-md-4" key={element.url} >
-							<NewsItem title={(element.title) ? element.title : ""} description={(element.description) ? element.description : ""} imageUrl={(element.urlToImage) ? element.urlToImage : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrjp5jjw8oTsE0TUtUJuo0ahese0svE0JV2Q&s"} newsUrl={(element.url) ? element.url : "/"} />
+							<NewsItem title={(element.title) ? element.title : ""} description={(element.description) ? element.description : ""} imageUrl={(element.urlToImage) ? element.urlToImage : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrjp5jjw8oTsE0TUtUJuo0ahese0svE0JV2Q&s"} newsUrl={(element.url) ? element.url : "/"} author={(element.author)? element.author : "Unknown"} date={new Date(element.publishedAt).toGMTString()} source={(element.source.name)? element.source.name : "Unknown"} />
 						</div>
 					})}
 				</div>
 
 				{this.state.loading && <Spinner />}
 
-				<div className="container my-4 d-flex justify-content-between">
+				{(!this.state.loading) && <div className="container my-4 d-flex justify-content-between">
 					<button type="button" disabled={(this.state.page <= 1)} className="btn btn-dark" onClick={this.handlePrevClick}>&larr; Previous</button>
 					<button type="button" disabled={Math.ceil((this.state.totalArticles) / (this.props.pageSize)) <= this.state.page} className="btn btn-dark" onClick={this.handleNextClick}>Next &rarr;</button>
-				</div>
+				</div>}
 
 			</div>
 		)
