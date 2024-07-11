@@ -29,10 +29,10 @@ export default class News extends Component {
 	}
 
 
-	async componentDidMount() {				//	this is a live cycle method which runs after the render method.......
+	async updateNews(currPage){
 		this.setState({ loading: true })
 
-		await fetch(`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=13d0b502d63749469f470f4e57a961f6&page=1&pageSize=${this.props.pageSize}`)
+		await fetch(`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=13d0b502d63749469f470f4e57a961f6&page=${currPage}&pageSize=${this.props.pageSize}`)
 			.then((response) => response.json())
 			.then((data) => {
 				this.setState({ articles: data.articles, totalArticles: data.totalResults, loading: false })
@@ -40,27 +40,20 @@ export default class News extends Component {
 	}
 
 
-	handleNextClick = async () => {
-		this.setState({ loading: true })
+	async componentDidMount() {				//	this is a lifecycle method which runs after the render method.......
+		this.updateNews(1)
+	}
 
-		await fetch(`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=13d0b502d63749469f470f4e57a961f6&page=${this.state.page + 1}&pageSize=${this.props.pageSize}`)
-			.then((response) => response.json())
-			.then((data) => {
-				this.setState({ page: this.state.page + 1 })
-				this.setState({ articles: data.articles, loading: false })
-			})
+
+	handleNextClick = async () => {
+		this.setState({ page: this.state.page + 1 })
+		this.updateNews(this.state.page + 1)
 	}
 
 
 	handlePrevClick = async () => {
-		this.setState({ loading: true })
-
-		await fetch(`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=13d0b502d63749469f470f4e57a961f6&page=${this.state.page - 1}&pageSize=${this.props.pageSize}`)
-			.then((response) => response.json())
-			.then((data) => {
-				this.setState({ page: this.state.page - 1 })
-				this.setState({ articles: data.articles, loading: false })
-			})
+		this.setState({ page: this.state.page - 1 })
+		this.updateNews(this.state.page - 1)
 	}
 
 
