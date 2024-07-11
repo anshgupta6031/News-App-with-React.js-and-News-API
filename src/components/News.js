@@ -17,8 +17,8 @@ export default class News extends Component {
 		category : PropTypes.string,
 	}
 
-	constructor() {
-		super()
+	constructor(props) {
+		super(props)
 
 		this.state = {                          //  this is how we set state in class based component.....
 			articles: [],
@@ -26,6 +26,13 @@ export default class News extends Component {
 			page: 1,
 			totalArticles: 0,
 		}
+
+		document.title = `NewsMonkey - ${this.CapitalizeFirstLetter(this.props.category)}`
+	}
+
+
+	CapitalizeFirstLetter = (word)=>{
+		return word[0].toUpperCase() + word.slice(1)
 	}
 
 
@@ -61,7 +68,7 @@ export default class News extends Component {
 		return (
 
 			<div className='container my-4'>
-				<h2 style={{margin: "20px"}}><u>NewsMonkey - Top Headlines</u></h2>
+				<h2 style={{margin: "20px"}}><u>NewsMonkey - Top {this.CapitalizeFirstLetter(this.props.category)} Headlines</u></h2>
 
 				<div className="row">
 
