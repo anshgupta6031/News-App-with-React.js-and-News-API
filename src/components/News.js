@@ -41,7 +41,7 @@ export default class News extends Component {
 	async updateNews(currPage) {
 		this.setState({ loading: true })
 
-		await fetch(`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=13d0b502d63749469f470f4e57a961f6&page=${currPage}&pageSize=${this.props.pageSize}`)
+		await fetch(`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=ccd41e4120e04aa98bee2e97b24884d9&page=${currPage}&pageSize=${this.props.pageSize}`)
 			.then((response) => response.json())
 			.then((data) => {
 				this.setState({ articles: data.articles, totalArticles: data.totalResults, loading: false })
@@ -69,7 +69,7 @@ export default class News extends Component {
 	fetchMoreData = async () => {
 		this.setState({ page: this.state.page + 1 })
 
-		await fetch(`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=13d0b502d63749469f470f4e57a961f6&page=${this.state.page + 1}&pageSize=${this.props.pageSize}`)
+		await fetch(`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=ccd41e4120e04aa98bee2e97b24884d9&page=${this.state.page + 1}&pageSize=${this.props.pageSize}`)
 			.then((response) => response.json())
 			.then((data) => {
 				this.setState({ articles: this.state.articles.concat(data.articles), totalArticles: data.totalResults })
@@ -80,8 +80,8 @@ export default class News extends Component {
 	render() {
 		return (
 
-			<div>
-				<h2 style={{ margin: "20px" }}><u>NewsMonkey - Top {this.CapitalizeFirstLetter(this.props.category)} Headlines</u></h2>
+			<>
+				<h2 style={{ margin: "30px", textAlign: "center" }}><u>NewsMonkey - Top {this.CapitalizeFirstLetter(this.props.category)} Headlines</u></h2>
 
 				{this.state.loading && <Spinner />}
 
@@ -105,7 +105,7 @@ export default class News extends Component {
 					<button type="button" disabled={Math.ceil((this.state.totalArticles) / (this.props.pageSize)) <= this.state.page} className="btn btn-dark" onClick={this.handleNextClick}>Next &rarr;</button>
 				</div>} */}
 
-			</div>
+			</>
 		)
 	}
 }
