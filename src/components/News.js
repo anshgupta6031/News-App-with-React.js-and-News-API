@@ -42,7 +42,7 @@ export default class News extends Component {
 		this.props.setProgress(10)
 		this.setState({ loading: true })
 
-		await fetch(`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=ccd41e4120e04aa98bee2e97b24884d9&page=${currPage}&pageSize=${this.props.pageSize}`)
+		await fetch(`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${currPage}&pageSize=${this.props.pageSize}`)
 			.then((response) => response.json())
 			.then((data) => {
 				this.setState({ articles: data.articles, totalArticles: data.totalResults, loading: false })
@@ -72,7 +72,7 @@ export default class News extends Component {
 	fetchMoreData = async () => {
 		this.setState({ page: this.state.page + 1 })
 
-		await fetch(`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=ccd41e4120e04aa98bee2e97b24884d9&page=${this.state.page + 1}&pageSize=${this.props.pageSize}`)
+		await fetch(`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page + 1}&pageSize=${this.props.pageSize}`)
 			.then((response) => response.json())
 			.then((data) => {
 				this.setState({ articles: this.state.articles.concat(data.articles), totalArticles: data.totalResults })
