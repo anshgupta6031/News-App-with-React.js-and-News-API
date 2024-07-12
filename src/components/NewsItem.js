@@ -13,7 +13,7 @@ export default class NewsItem extends Component {
 		return (
 			<div className='container my-3'>
 				<div className="card">
-				<span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info" style={{zIndex: 1, padding: "7px"}}>{source}</span>
+				<span className="position-absolute top-0 translate-middle badge rounded-pill bg-info" style={{left: "95%", zIndex: 1, padding: "10px"}}>{source}</span>
 					<img src={imageUrl} className="card-img-top" alt="..." />
 					<div className="card-body">
 						<h5 className="card-title">{title}</h5>

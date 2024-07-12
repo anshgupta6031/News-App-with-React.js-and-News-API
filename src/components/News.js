@@ -39,6 +39,7 @@ export default class News extends Component {
 
 
 	async updateNews(currPage) {
+		this.props.setProgress(10)
 		this.setState({ loading: true })
 
 		await fetch(`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=ccd41e4120e04aa98bee2e97b24884d9&page=${currPage}&pageSize=${this.props.pageSize}`)
@@ -46,6 +47,8 @@ export default class News extends Component {
 			.then((data) => {
 				this.setState({ articles: data.articles, totalArticles: data.totalResults, loading: false })
 			})
+
+		this.props.setProgress(100)
 	}
 
 
