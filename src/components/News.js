@@ -84,7 +84,7 @@ export default class News extends Component {
 		return (
 
 			<>
-				<h2 style={{ margin: "30px", textAlign: "center" }}><u>NewsMonkey - Top {this.CapitalizeFirstLetter(this.props.category)} Headlines</u></h2>
+				<h2 style={{ margin: "30px", textAlign: "center", marginTop:"80px" }}><u>NewsMonkey - Top {this.CapitalizeFirstLetter(this.props.category)} Headlines</u></h2>
 
 				{this.state.loading && <Spinner />}
 
